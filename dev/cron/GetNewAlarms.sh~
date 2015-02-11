@@ -1,0 +1,4 @@
+#!/bin/bash          
+cd /home/warren/web/HMI_PLC_MANAGER/dev/cron
+ls
+

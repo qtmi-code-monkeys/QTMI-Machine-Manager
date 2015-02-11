@@ -1,0 +1,2 @@
+#!/bin/bash
+mysqldump -u root -pDecember44 --all-databases | gzip > /home/warren/web/HMI_PLC_MANAGER/mysql_dumps/qtmi_db_backup_`date '+%m-%d-%Y'`.sql.gz

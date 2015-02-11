@@ -1,0 +1,23 @@
+	.siteTitle {font-size:30; font-weight:900; background-color:#E0E0F8; color:black; margin-top:0px; margin-bottom:0px; width:600px }
+	.welcomeUser {font-size:20; font-weight:900; background-color:#E0E0F8; color:black;}	
+	.pageTitle {font-size:40; font-weight:10; color:black; margin-top:0px; margin-bottom:0px}
+	.breadCrumb {font-size:30; font-weight:10; color:black; margin-top:0px; margin-bottom:5px}
+	.linksBar {font-size:20; font-weight:200; color:black; margin-top:5px; margin-bottom:5px; width:580px}
+
+
+	.formLabel {font-size:18; font-weight:bold; color:#001A66; margin-top:0px; margin-bottom:0px}
+	.formFieldLabel {font-size:16; font-weight:bold; color:#000000; margin-top:0px; margin-bottom:0px}
+	.formFieldLabel2 {font-size:16; font-weight:bold; color:#000000; margin-top:0px; margin-bottom:0px}
+	.selectHMIBackground {background-color:#DAC2FF; }
+	.selectPLCBackground {background-color:#99CCB2; }
+	.formBackground {background-color:#F2F2F2; width:600px }
+	.formBackground_adm {background-color:#A2F2B2; width:600px }
+	.descriptionColumn {width:400px }
+	.notesSubject {font-size:18; font-weight:bold; color:#001A66;}
+
+	.backLink {font-size:40; font-weight:30; color:black}
+	/* Table and column styles */
+	.columnTitle {font-size:25; font-weight:16; color:black; margin-top:0px}
+	.boldValue {color:black}
+	
+	.sectionHeader {font-size:20; font-weight:900; color:black; margin-top:0px; margin-bottom:0px; background-color:#E0E0F8; width:200px }	

@@ -1,0 +1,20 @@
+/home/warren/QTMI_Manager_server/error_logs/
+
+/home/warren/web/HMI_PLC_MANAGER/customers/error_logs/
+
+
+* * * * *  rsync -avz -e "ssh -i /home/warren/cron/thishost-rsync-key" /home/warren/syncThis/ warren@162.242.221.50:/home/warren/syncThis
+
+
+* * * * *  rsync -avz -e "ssh -i /home/warren/cron/thishost-rsync-key" /home/warren/QTMI_Manager_server/error_logs/ warren@162.242.221.50:/home/warren/web/HMI_PLC_MANAGER/customers/error_logs
+
+
+
+
+* * * * *  php /home/warren/QTMI_Manager_server/cronController.php
+* * * * *  rsync -avz -e "ssh -i /home/warren/cron/thishost-rsync-key" /home/warren/syncThis/ warren@162.242.221.50:/home/warren/syncThis
+* * * * *  rsync -avz -e "ssh -i /home/warren/cron/thishost-rsync-key" /home/warren/QTMI_Manager_server/error_logs/ warren@162.242.221.50:/home/warren/web/HMI_PLC_MANAGER/customers/error_logs
+
+
+
+* * * * *  rsync -avz -e "ssh -i /home/warren/cron/thishost-rsync-key" warren@162.242.221.50:/home/warren/web/HMI_PLC_MANAGER/customers/error_logs /home/warren/QTMI_Manager_server/error_logs/ 
