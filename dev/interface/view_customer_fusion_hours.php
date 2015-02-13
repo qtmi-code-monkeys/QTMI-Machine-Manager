@@ -10,14 +10,13 @@ $listFiles->machine_type = $_SESSION['machine_type'] ;
 
 
 
-$newCustomerMachineHours = new CustomerMachineHours($dbLink, "FUSION");
+$newCustomerMachineHours = new CustomerMachineHours($dbLink);
 if(isset($_REQUEST["addCustHoursNow"])){
 	if($_REQUEST["machineType"] == "f")
 		$newCustomerMachineHours->customer_machine_type ="FusionM";
 	else if($_REQUEST["machineType"] == "h")
 		$newCustomerMachineHours->customer_machine_type ="FusionHC";	
-	$newCustomerMachineHours->customer_id = $newCustomer->id;
-	$newCustomerMachineHours->customer_name = $newCustomer->name;
+	$newCustomerMachineHours->customer_id = $_REQUEST["customer_id"];
 	$newCustomerMachineHours->created_on = $today;
 	$newCustomerMachineHours->turbo_on =$_REQUEST["turboRunTime"];
 	$newCustomerMachineHours->water_chiller_run_time = $_REQUEST["chillerRunTime"];
@@ -108,7 +107,7 @@ if(isset($_REQUEST["addCustHoursNow"])){
 	</div>
 <?php } ?>
 
-<?php  /*echo $newCustomerMachineHours->showMachineHours(); */?>
+<?php  echo $newCustomerMachineHours->showMachineHours(); ?>
 
 </body>
 </html>

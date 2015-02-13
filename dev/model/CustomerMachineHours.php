@@ -80,17 +80,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		mysql_real_escape_string($this->machine_on_time));
 		//echo $query;
 		mysql_query($query);
-	}
-	/*
-	public function showMachineHours() {
-		$today = date('y-m-j');
-		//$this->linkMaker->machine_type = $this->customer_machine_type;
-		//$this->linkMaker->code_base = $this->code_base;
 		
-		$rowCounter = 0;
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_name` = '%s' \AND `customer_machine_hours`.`customer_machine_type` = '%s' AND `customer_machine_hours`.`created_on` = '%s' AND `customer_machine_hours`.`turbo_on` = '%s' AND `customer_machine_hours`.`water_chiller_run_time` = '%s' AND `customer_machine_hours`.`glow_hydro_rp_on` = '%s' AND `customer_machine_hours`.`dep_rp_on` = '%s' AND `customer_machine_hours`.`dep_motor_run_time` = '%s' AND `customer_machine_hours`.`rotation_motor_o_ring` = '%s' AND `customer_machine_hours`.`glow_hydro_rp_oil_life_meter` = '%s' AND `customer_machine_hours`.`dep_rough_pump_oil_life` = '%s' AND `customer_machine_hours`.`lens_count` = '%s' AND `customer_machine_hours`.`lens_count_setpoint` = '%s' AND `customer_machine_hours`.`machine_on_time` = '%s' ORDER BY `customer_machine_archive`.`id` %s", mysql_real_escape_string($this->customer_name),mysql_real_escape_string($this->customer_machine_type),  mysql_real_escape_string($today),  mysql_real_escape_string($this->turbo_on),  mysql_real_escape_string($this->water_chiller_run_time),  mysql_real_escape_string($this->glow_hydro_rp_on),  mysql_real_escape_string($this->dep_rp_on),  mysql_real_escape_string($this->dep_motor_run_time),  mysql_real_escape_string($this->rotation_motor_o_ring),  mysql_real_escape_string($this->glow_hydro_rp_oil_life_meter),  mysql_real_escape_string($this->dep_rough_pump_oil_life),  mysql_real_escape_string($this->lens_count),  mysql_real_escape_string($this->lens_count_setpoint),  mysql_real_escape_string($this->machine_on_time), mysql_real_escape_string($this->sort));
-
-		//echo $query;
 		echo "<table border=1  style='background:#F3F7F7' >";
 				echo "<tr>";
 					echo "<td style='font-size:18'><b>Customer</b></td>";
@@ -98,7 +88,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 					echo "<td style='font-size:18'><b>Date</b></td>";
 					echo "<td style='font-size:18'><b>Turbo Hours</b></td>";
 					echo "<td style='font-size:18'><b>Chiller Run Time</b></td>";
-					echo "<td style='font-size:18'><b>Glow & Hydroo Roughing Pump Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydro Roughing Pump Run Time</b></td>";
 					echo "<td style='font-size:18'><b>Dep Chamber Roughing Pump Run Time</b></td>";
 					echo "<td style='font-size:18'><b>Dep Motor Run Time</b></td>";
 					echo "<td style='font-size:18'><b>Rotation Motor O-Ring</b></td>";
@@ -108,7 +98,100 @@ class CustomerMachineHours extends QtmiBaseClass {
 					echo "<td style='font-size:18'><b>Lens Count Setpoint</b></td>";
 					echo "<td style='font-size:18'><b>Machine Run Time</b></td>";					
 				echo "</tr>";
+				echo "<tr>";
+					echo "<td style='font-size:18'>".$this->customer_id."</td>";
+					echo "<td style='font-size:18'>".$this->customer_machine_type."</td>";
+					echo "<td style='font-size:18'>".$today."</td>";
+					echo "<td style='font-size:18'>".$this->turbo_on."</td>";
+					echo "<td style='font-size:18'>".$this->water_chiller_run_time."</td>";
+					echo "<td style='font-size:18'>".$this->glow_hydro_rp_on."</td>";
+					echo "<td style='font-size:18'>".$this->dep_rp_on."</td>";
+					echo "<td style='font-size:18'>".$this->dep_motor_run_time."</td>";
+					echo "<td style='font-size:18'>".$this->rotation_motor_o_ring."</td>";
+					echo "<td style='font-size:18'>".$this->glow_hydro_rp_oil_life_meter."</td>";
+					echo "<td style='font-size:18'>".$this->dep_rough_pump_oil_life."</td>";
+					echo "<td style='font-size:18'>".$this->lens_count."</td>";
+					echo "<td style='font-size:18'>".$this->lens_count_setpoint."</td>";
+					echo "<td style='font-size:18'>".$this->machine_on_time."</td>";					
+				echo "</tr>";			
+				echo "<tr>";
+					echo "<td style='font-size:18'>".settype($this->customer_id, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->customer_machine_type, "string")."</td>";
+					echo "<td style='font-size:18'>".$today."</td>";
+					echo "<td style='font-size:18'>".settype($this->turbo_on, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->water_chiller_run_time, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->glow_hydro_rp_on, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->dep_rp_on, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->dep_motor_run_time, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->rotation_motor_o_ring, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->glow_hydro_rp_oil_life_meter, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->dep_rough_pump_oil_life, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->lens_count, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->lens_count_setpoint, "int")."</td>";
+					echo "<td style='font-size:18'>".settype($this->machine_on_time, "int")."</td>";					
+				echo "</tr>";
+				echo "<tr>";
+					echo "<td style='font-size:18'>".gettype($this->customer_id)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->customer_machine_type)."</td>";
+					echo "<td style='font-size:18'>".gettype($today)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->turbo_on)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->water_chiller_run_time)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->glow_hydro_rp_on)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->dep_rp_on)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->dep_motor_run_time)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->rotation_motor_o_ring)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->glow_hydro_rp_oil_life_meter)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->dep_rough_pump_oil_life)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->lens_count)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->lens_count_setpoint)."</td>";
+					echo "<td style='font-size:18'>".gettype($this->machine_on_time)."</td>";					
+				echo "</tr>";	
+				echo "<tr>";
+					echo "<td style='font-size:18'>".$this->customer_id."</td>";
+					echo "<td style='font-size:18'>".$this->customer_machine_type."</td>";
+					echo "<td style='font-size:18'>".$today."</td>";
+					echo "<td style='font-size:18'>".$this->turbo_on."</td>";
+					echo "<td style='font-size:18'>".$this->water_chiller_run_time."</td>";
+					echo "<td style='font-size:18'>".$this->glow_hydro_rp_on."</td>";
+					echo "<td style='font-size:18'>".$this->dep_rp_on."</td>";
+					echo "<td style='font-size:18'>".$this->dep_motor_run_time."</td>";
+					echo "<td style='font-size:18'>".$this->rotation_motor_o_ring."</td>";
+					echo "<td style='font-size:18'>".$this->glow_hydro_rp_oil_life_meter."</td>";
+					echo "<td style='font-size:18'>".$this->dep_rough_pump_oil_life."</td>";
+					echo "<td style='font-size:18'>".$this->lens_count."</td>";
+					echo "<td style='font-size:18'>".$this->lens_count_setpoint."</td>";
+					echo "<td style='font-size:18'>".$this->machine_on_time."</td>";					
+				echo "</tr>";
+	}
+	
+	public function showMachineHours() {
+		$today = date('y-m-j');
+		//$this->linkMaker->machine_type = $this->customer_machine_type;
+		//$this->linkMaker->code_base = $this->code_base;
+		
+		$rowCounter = 0;
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` ORDER BY `customer_machine_hours`.`id`%s",mysql_real_escape_string($this->sort));
 		$result = mysql_query($query);
+		//echo $query;
+		echo "<table border=1  style='background:#F3F7F7' >";
+				echo "<tr>";
+					echo "<td style='font-size:18'><b>Customer</b></td>";
+					echo "<td style='font-size:18'><b>Machine</b></td>";
+					echo "<td style='font-size:18'><b>Date</b></td>";
+					echo "<td style='font-size:18'><b>Turbo Hours</b></td>";
+					echo "<td style='font-size:18'><b>Chiller Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydro Roughing Pump Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Dep Chamber Roughing Pump Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Dep Motor Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Rotation Motor O-Ring</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydroo Roughing Pump Oil Life</b></td>";
+					echo "<td style='font-size:18'><b>Dep Roughing Pump Oil Life</b></td>";
+					echo "<td style='font-size:18'><b>Lens Count</b></td>";
+					echo "<td style='font-size:18'><b>Lens Count Setpoint</b></td>";
+					echo "<td style='font-size:18'><b>Machine Run Time</b></td>";					
+				echo "</tr>";
+				
+		
 			while ($row = mysql_fetch_assoc($result)) {
 				//$this->listFiles->setFile($row['file_id']);		
 			
@@ -134,7 +217,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		echo "</table>";
 	}
 	
-	*/
+	
 
 	/*
 	public function loadHours() {
