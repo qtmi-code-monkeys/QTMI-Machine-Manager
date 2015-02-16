@@ -6,9 +6,9 @@ class CustomerMachineHours extends QtmiBaseClass {
     // declare properties
     public $id = -1;       
     public $customer_id = -1;
-    public $customer_name = "";
+    public $customer_name = -1;
     public $customer_machine_id = -1;
-    public $customer_machine_type = "Fusion";
+    public $customer_machine_type = "";
     public $created_on = "";
    	public $turbo_on = "";
    	public $water_chiller_run_time = "";
@@ -37,34 +37,41 @@ class CustomerMachineHours extends QtmiBaseClass {
 		$today = date('y-m-j');
 		$this->last_hmi_update = $today;
 		$this->last_plc_update = $today;
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine` WHERE `customer_id` = '%s' AND `machine_type` = '%s'",  mysql_real_escape_string($this->customer_id), mysql_real_escape_string($this->customer_machine_type));
+		$result = mysql_query($query);
+			while ($row = mysql_fetch_assoc($result)) {
+				$this->customer_machine_id = $row['id'];
+				$this->customer_name = $row['customer_name'];
+				
+			}
+			
 		
 		$query = sprintf("INSERT INTO `hmi_plc_mgr`.`customer_machine_hours` (
-		`id` ,
-		`customer_id` ,
-		`customer_name` ,
-		`customer_machine_id` ,
-		`customer_machine_type` ,
-		`created_on` ,
-		`turbo_on` ,
-		`water_chiller_run_time` ,
-		`glow_hydro_rp_on` ,
-		`dep_rp_on` ,
-		`dep_motor_run_time` ,
-		`rotation_motor_o_ring` ,
-		`glow_hydro_rp_oil_life_meter` ,
-		`dep_rough_pump_oil_life` ,
-		`lens_count` ,
-		`lens_count_setpoint` ,
-		`machine_on_time` ,
+		`id`,
+		`customer_id`, 
+		`customer_name`, 
+		`customer_machine_id`, 
+		`customer_machine_type`, 
+		`created_on`, 
+		`turbo_on`, 
+		`water_chiller_run_time`, 
+		`glow_hydro_rp_on`, 
+		`dep_rp_on`, 
+		`dep_motor_run_time`, 
+		`rotation_motor_o_ring`, 
+		`glow_hydro_rp_oil_life_meter`, 
+		`dep_rough_pump_oil_life`, 
+		`lens_count`, 
+		`lens_count_setpoint`, 
+		`machine_on_time`
 		
 		)
 		VALUES (
-		NULL , '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
-		);", 
-		mysql_real_escape_string($this->id),  
+		NULL ,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'
+		);",  
 		mysql_real_escape_string($this->customer_id), 
-		mysql_real_escape_string($this->customer_name), 
-		mysql_real_escape_string($this->customer_machine_id),
+		mysql_real_escape_string($this->customer_name), 	//need to change back to customer_name
+		mysql_real_escape_string($this->customer_machine_id),	//need to change back to customer_machine_id
 		mysql_real_escape_string($this->customer_machine_type),		
 		mysql_real_escape_string($today), 
 		mysql_real_escape_string($this->turbo_on), 
@@ -81,6 +88,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		//echo $query;
 		mysql_query($query);
 		
+		/*		Debug code to check info being submitted to the database
 		echo "<table border=1  style='background:#F3F7F7' >";
 				echo "<tr>";
 					echo "<td style='font-size:18'><b>Customer</b></td>";
@@ -162,6 +170,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 					echo "<td style='font-size:18'>".$this->lens_count_setpoint."</td>";
 					echo "<td style='font-size:18'>".$this->machine_on_time."</td>";					
 				echo "</tr>";
+				*/
 	}
 	
 	public function showMachineHours() {

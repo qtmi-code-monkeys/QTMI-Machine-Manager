@@ -8,16 +8,28 @@ $newCustomer = new Customer($dbLink);
 $listFiles = new ListFiles($dbLink);
 $listFiles->machine_type = $_SESSION['machine_type'] ;
 
-
+$counter =0;
 
 $newCustomerMachineHours = new CustomerMachineHours($dbLink);
 if(isset($_REQUEST["addCustHoursNow"])){
+	/*foreach($_REQUEST as $value){
+		if(!$counter = 0 || !$counter = 1){
+			try{
+				settype($value, "int");
+			}
+			catch(Exception $e){
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}
+		}
+	}
+	*/
+
 	if($_REQUEST["machineType"] == "f")
-		$newCustomerMachineHours->customer_machine_type ="FusionM";
+		$newCustomerMachineHours->customer_machine_type ="FUSION";
 	else if($_REQUEST["machineType"] == "h")
-		$newCustomerMachineHours->customer_machine_type ="FusionHC";	
+		$newCustomerMachineHours->customer_machine_type ="HC";	
 	$newCustomerMachineHours->customer_id = $_REQUEST["customer_id"];
-	$newCustomerMachineHours->created_on = $today;
+	$newCustomerMachineHours->created_on = $today;	
 	$newCustomerMachineHours->turbo_on =$_REQUEST["turboRunTime"];
 	$newCustomerMachineHours->water_chiller_run_time = $_REQUEST["chillerRunTime"];
 	$newCustomerMachineHours->glow_hydro_rp_on = $_REQUEST["ghrpRunTime"];
