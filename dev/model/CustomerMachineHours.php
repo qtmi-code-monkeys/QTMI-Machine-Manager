@@ -228,36 +228,37 @@ class CustomerMachineHours extends QtmiBaseClass {
 	
 	
 
-	/*
+	
 	public function loadHours() {
 		exec('mkdir ../../customers/hours_logs');	
 		exec('mkdir ../../customers/hours_logs/'.$this->customer->code);	
 		exec('mkdir ../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type);	
 		$this->csv_dir = '../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type.'/';
-		$csvFiles = scandir($this->csv_dir, 1);
+		$dirList = scandir($this->csv_dir, 1);
 		
-		foreach($csvFiles as $csvFile) 
-		{ 
-			if($csvFile != "." && $csvFile != ".." ){
-				if(!$this->hasFileBeenLogged($csvFile)){
-					$csv_array = $this->readHours($csvFile);
-					$this->insertHours($csv_array);
-					$this->insertLoggedFile($csvFile);
-				}
+		foreach($dirList as $dir) 
+		{  
+		
+			$hoursLog = $dir . "/hours.csv";
+				
+			if(!$this->haveHoursBeenLogged($hoursLog)){
+				$csv_array = $this->readHours($hoursLog);
+				$this->insertHours($csv_array);
+				$this->insertLoggedFile($hoursLog);
 			}
+			
 		} 
 
 
 
 	}	
-*/
+
 	// method declaration
-	/*		probably not using this method. 
-			commenting in the event that it is useful
-	public function hasFileBeenLogged($filename) {
+			
+	public function haveHoursBeenLogged($dirName) {
 		$returnValue = false;
 		
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_error_file_log` WHERE `customer_machine_error_file_log`.`filename` = '%s' AND `customer_machine_error_file_log`.`customer_id` = '%s' AND `customer_machine_error_file_log`.`machine_type` = '%s' ",  mysql_real_escape_string($filename), mysql_real_escape_string($this->customer->id), mysql_real_escape_string($this->machine_type));
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours_log` WHERE `customer_machine_hours_log`.`dirName` = '%s' AND `customer_machine_hours_log`.`customer_id` = '%s' AND `customer_machine_hours_log`.`machine_type` = '%s' ",  mysql_real_escape_string($dirName), mysql_real_escape_string($this->customer->id), mysql_real_escape_string($this->machine_type));
 		//echo $query;
 		$result = mysql_query($query);
 		while ($row = mysql_fetch_assoc($result)) {
@@ -286,11 +287,11 @@ class CustomerMachineHours extends QtmiBaseClass {
 		if(mysql_query($query)) echo "Logged CSV File \n";
 	
 	}
-	*/
+	
 
 
 
-/*
+
 	// method declaration
 	public function readHours($csvFile) {
 		$csv_array = $this->util->csv_to_array($this->csv_dir . $csvFile);
@@ -364,95 +365,10 @@ class CustomerMachineHours extends QtmiBaseClass {
 		return $returnValue;
 		
 	}
-	*/
 	
-/*
-	public function insertArchiveFile() {
-		$lastUpdate = "";
-		$fileId = -1;
-		$fileName = "";
-		$fileVersion = "";
-		$fileIP = "";
-		if($this->code_base == "HMI"){
-			$lastUpdate = $this->last_hmi_update;
-			$fileId = $this->current_hmi_file_id;
-			$fileName = $this->current_hmi;
-			$fileVersion = $this->current_hmi_version;
-			$fileIP = $this->current_hmi_ip;
-		}
-		if($this->code_base == "PLC"){
-			$lastUpdate = $this->last_plc_update;
-			$fileId = $this->current_plc_file_id;
-			$fileName = $this->current_plc;
-			$fileVersion = $this->current_plc_version;
-			$fileIP = $this->current_hmi_ip;
-		}	
 	
-				$query = sprintf("INSERT IGNORE INTO `hmi_plc_mgr`.`customer_machine_archive` (
-					`id`,
-					`machine_type`,
-					`code_base`,
-					`customer_machine_id`,
-					`customer_id`,
-					`customer_name`,
-					`file_update`,
-					`file_id`,
-					`file_name`,
-					`file_version`,
-					`file_ip`
-					)
-					VALUES (
-					NULL , '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
-					);", 
-					mysql_real_escape_string($this->machine_type), 
-					mysql_real_escape_string($this->code_base), 
-					mysql_real_escape_string($this->id), 
-					mysql_real_escape_string($this->customer->id), 
-					mysql_real_escape_string($this->customer->name), 
-					mysql_real_escape_string($lastUpdate), 
-					mysql_real_escape_string($fileId), 
-					mysql_real_escape_string($fileName), 
-					mysql_real_escape_string($fileVersion), 
-					mysql_real_escape_string($fileIP));
-					//echo $query . "\n\n";
-				mysql_query($query);
-	}
 
-
-	public function showArchiveFiles() {
-		$this->linkMaker->machine_type = $this->machine_type;
-		$this->linkMaker->code_base = $this->code_base;
 		
-		$rowCounter = 0;
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_archive` WHERE `customer_machine_archive`.`customer_machine_id` = '%s' AND `customer_machine_archive`.`machine_type` = '%s' AND `customer_machine_archive`.`code_base` = '%s' ORDER BY `customer_machine_archive`.`id` %s", mysql_real_escape_string($this->id), mysql_real_escape_string($this->machine_type), mysql_real_escape_string($this->code_base), mysql_real_escape_string($this->sort));
-
-		//echo $query;
-		echo "<table border=1  style='background:#F3F7F7' >";
-				echo "<tr>";
-					echo "<td style='font-size:18'><b>Customer</b></td>";
-					echo "<td style='font-size:18'><b>Date</b></td>";
-					echo "<td style='font-size:18'><b>File</b></td>";
-					echo "<td style='font-size:18'><b>Description</b></td>";
-					echo "<td style='font-size:18'><b>Version</b></td>";
-					echo "<td style='font-size:18'><b>IP</b></td>";
-				echo "</tr>";
-		$result = mysql_query($query);
-			while ($row = mysql_fetch_assoc($result)) {
-				$this->listFiles->setFile($row['file_id']);		
-			
-				if($rowCounter % 2 == 0) echo "<tr style='background:#F5E0EB'>";
-				else echo "<tr>";
-				echo "<td valign=top align=left>".$row['customer_name']."</td>";
-				echo "<td valign=top align=left>".$row['file_update']."</td>";
-				echo "<td valign=top align=left>".$this->linkMaker->getFileLink($row['file_name'])."</td>";
-				echo "<td valign=top align=left>".nl2br($this->listFiles->description_of_changes)."</td>";
-				echo "<td valign=top align=left>".$row['file_version']."</td>";
-				echo "<td valign=top align=left>".$row['file_ip']."</td>";
-				echo "</tr>";
-				$rowCounter++;
-			}	
-		echo "</table>";
-		*/
 	}
 
     ?>
