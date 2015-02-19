@@ -1,6 +1,6 @@
 <?php
 include_once 'global_includes.php';
- 
+
 $_SESSION['machine_type'] = "FUSION";
 $today = date('y-m-j');
 $newCustomer = new Customer($dbLink);

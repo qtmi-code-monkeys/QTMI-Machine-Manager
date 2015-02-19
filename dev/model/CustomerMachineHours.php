@@ -35,6 +35,8 @@ class CustomerMachineHours extends QtmiBaseClass {
     	//Manual addition (?)
     	public function addCustomerMachineHours() {
 		$today = date('y-m-j');
+		$this->last_hmi_update = $today;
+		$this->last_plc_update = $today;
 		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine` WHERE `customer_id` = '%s' AND `machine_type` = '%s'",  mysql_real_escape_string($this->customer_id), mysql_real_escape_string($this->customer_machine_type));
 		$result = mysql_query($query);
 			while ($row = mysql_fetch_assoc($result)) {
@@ -233,17 +235,18 @@ class CustomerMachineHours extends QtmiBaseClass {
 		exec('mkdir ../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type);	
 		$this->csv_dir = '../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type.'/';
 		$dirList = scandir($this->csv_dir, 1);
-+		
-+		foreach($dirList as $dir) 
-+		{  
+		
+		foreach($dirList as $dir) 
+		{  
+		
 			$hoursLog = $dir . "/hours.csv";
-+				
-+			if(!$this->haveHoursBeenLogged($hoursLog)){
-+				$csv_array = $this->readHours($hoursLog);
-+				$this->insertHours($csv_array);
-+				$this->insertLoggedFile($hoursLog);
- 			}
+				
+			if(!$this->haveHoursBeenLogged($hoursLog)){
+				$csv_array = $this->readHours($hoursLog);
+				$this->insertHours($csv_array);
+				$this->insertLoggedFile($hoursLog);
 			}
+			
 		} 
 
 
@@ -251,7 +254,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 	}	
 
 	// method declaration
-	
+			
 	public function haveHoursBeenLogged($dirName) {
 		$returnValue = false;
 		
@@ -291,80 +294,81 @@ class CustomerMachineHours extends QtmiBaseClass {
 
 	// method declaration
 	public function readHours($csvFile) {
- 		$csv_array = $this->util->csv_to_array($this->csv_dir . $csvFile);
- 		return $csv_array;
- 	}	
- 
- 	// method declaration
- 	
- 	public function insertHours($csv_array) {
- 		foreach ($csv_array as &$value) {
- 			if($this->areHoursPresent($value['Date']) == 0){
- 				$query = sprintf("INSERT IGNORE INTO `hmi_plc_mgr`.`customer_machine_hours` (
- 				`id` ,
- 				`customer_id` ,
- 				`customer_name` ,
- 				`customer_machine_id` ,
- 				`created_on` ,
- 				`turbo_on` ,
- 				`water_chiller_run_time` ,
- 				`glow_hydro_rp_on` ,
- 				`dep_rp_on` ,
- 				`dep_motor_run_time` ,
- 				`rotation_motor_o_ring` ,
- 				`glow_hydro_rp_oil_life_meter` ,
- 				`dep_rough_pump_oil_life` ,
- 				`lens_count` ,
- 				`lens_count_setpoint` ,
- 				`machine_on_time` ,
- 		
- 				)
- 				VALUES (
- 				NULL , '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
- 				);", 
- 				mysql_real_escape_string($this->id),  
- 				mysql_real_escape_string($this->customer_id), 
- 				mysql_real_escape_string($this->customer_name), 
- 				mysql_real_escape_string($this->customer_machine_id),
- 				mysql_real_escape_string($today), 
- 				mysql_real_escape_string($this->turbo_on), 
- 				mysql_real_escape_string($this->water_chiller_run_time), 
- 				mysql_real_escape_string($this->glow_hydro_rp_on),
- 				mysql_real_escape_string($this->dep_rp_on),
- 				mysql_real_escape_string($this->dep_motor_run_time), 
- 				mysql_real_escape_string($this->rotation_motor_o_ring), 
- 				mysql_real_escape_string($this->glow_hydro_rp_oil_life_meter), 
- 				mysql_real_escape_string($this->dep_rough_pump_oil_life),
- 				mysql_real_escape_string($this->lens_count));
- 				mysql_real_escape_string($this->lens_count_setpoint));
- 				mysql_real_escape_string($this->machine_on_time));
- 				//echo $query;
- 				mysql_query($query);
- 					//echo $query . "\n\n";
- 				if(mysql_query($query)) echo "inserted!";
- 			}
- 		}	
- 	}	
- 	
- 	// method declaration
- 	public function areHoursPresent($createdDate) {
- 		$returnValue = 0;	
- 		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s' AND `customer_machine_error`.`created_on_date` = '%s'", mysql_real_escape_string($this->customer->id), mysql_real_escape_string($createdDate));
- 		//echo $query . "\n\n";
- 		if($result = mysql_query($query)){
- 			echo "Result reached". "\n";
- 		}else{
- 			echo "Result not reached". "\n";
- 		}
- 		while ($row = mysql_fetch_assoc($result)) {
- 			$returnValue = 1;
- 		}
- 		return $returnValue;
- 		
- 	}
+		$csv_array = $this->util->csv_to_array($this->csv_dir . $csvFile);
+		return $csv_array;
+	}	
+
+	// method declaration
+	
+	public function insertHours($csv_array) {
+		foreach ($csv_array as &$value) {
+			if($this->areHoursPresent($value['Date']) == 0){
+				$query = sprintf("INSERT IGNORE INTO `hmi_plc_mgr`.`customer_machine_hours` (
+				`id` ,
+				`customer_id` ,
+				`customer_name` ,
+				`customer_machine_id` ,
+				`created_on` ,
+				`turbo_on` ,
+				`water_chiller_run_time` ,
+				`glow_hydro_rp_on` ,
+				`dep_rp_on` ,
+				`dep_motor_run_time` ,
+				`rotation_motor_o_ring` ,
+				`glow_hydro_rp_oil_life_meter` ,
+				`dep_rough_pump_oil_life` ,
+				`lens_count` ,
+				`lens_count_setpoint` ,
+				`machine_on_time` ,
+		
+				)
+				VALUES (
+				NULL , '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
+				);", 
+				mysql_real_escape_string($this->id),  
+				mysql_real_escape_string($this->customer_id), 
+				mysql_real_escape_string($this->customer_name), 
+				mysql_real_escape_string($this->customer_machine_id),
+				mysql_real_escape_string($today), 
+				mysql_real_escape_string($this->turbo_on), 
+				mysql_real_escape_string($this->water_chiller_run_time), 
+				mysql_real_escape_string($this->glow_hydro_rp_on),
+				mysql_real_escape_string($this->dep_rp_on),
+				mysql_real_escape_string($this->dep_motor_run_time), 
+				mysql_real_escape_string($this->rotation_motor_o_ring), 
+				mysql_real_escape_string($this->glow_hydro_rp_oil_life_meter), 
+				mysql_real_escape_string($this->dep_rough_pump_oil_life),
+				mysql_real_escape_string($this->lens_count));
+				mysql_real_escape_string($this->lens_count_setpoint));
+				mysql_real_escape_string($this->machine_on_time));
+				//echo $query;
+				mysql_query($query);
+					//echo $query . "\n\n";
+				if(mysql_query($query)) echo "inserted!";
+			}
+		}	
+	}	
+	
+	// method declaration
+	public function areHoursPresent($createdDate) {
+		$returnValue = 0;	
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s' AND `customer_machine_error`.`created_on_date` = '%s'", mysql_real_escape_string($this->customer->id), mysql_real_escape_string($createdDate));
+		//echo $query . "\n\n";
+		if($result = mysql_query($query)){
+			echo "Result reached". "\n";
+		}else{
+			echo "Result not reached". "\n";
+		}
+		while ($row = mysql_fetch_assoc($result)) {
+			$returnValue = 1;
+		}
+		return $returnValue;
+		
+	}
 	
 	
 
+		
 	}
 
     ?>
