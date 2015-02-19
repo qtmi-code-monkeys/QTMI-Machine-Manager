@@ -1,7 +1,7 @@
 <?php
 include_once "../lib/LinkMaker.php"; 
 include_once "../lib/Util.php";
-
+ 
 class CustomerMachineHours extends QtmiBaseClass {
     // declare properties
     public $id = -1;       
