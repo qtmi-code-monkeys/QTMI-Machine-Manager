@@ -249,8 +249,6 @@ class CustomerMachineHours extends QtmiBaseClass {
 			
 		} 
 
-
-
 	}	
 
 	// method declaration
@@ -271,11 +269,11 @@ class CustomerMachineHours extends QtmiBaseClass {
 
 	// method declaration
 	public function insertLoggedFile($filename) {
-		$query = sprintf("INSERT IGNORE INTO `hmi_plc_mgr`.`customer_machine_error_file_log` (
+		$query = sprintf("INSERT IGNORE INTO `hmi_plc_mgr`.`customer_machine_hours_log` (
 			`id` ,
 			`customer_id` ,
 			`machine_type` ,
-			`filename` 
+			`dir_name` 
 			)
 			VALUES (
 			NULL , '%s', '%s', '%s'
@@ -298,8 +296,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		return $csv_array;
 	}	
 
-	// method declaration
-	
+	// method declaration	
 	public function insertHours($csv_array) {
 		foreach ($csv_array as &$value) {
 			if($this->areHoursPresent($value['Date']) == 0){
@@ -338,8 +335,8 @@ class CustomerMachineHours extends QtmiBaseClass {
 				mysql_real_escape_string($this->rotation_motor_o_ring), 
 				mysql_real_escape_string($this->glow_hydro_rp_oil_life_meter), 
 				mysql_real_escape_string($this->dep_rough_pump_oil_life),
-				mysql_real_escape_string($this->lens_count));
-				mysql_real_escape_string($this->lens_count_setpoint));
+				mysql_real_escape_string($this->lens_count);
+				mysql_real_escape_string($this->lens_count_setpoint);
 				mysql_real_escape_string($this->machine_on_time));
 				//echo $query;
 				mysql_query($query);
@@ -352,7 +349,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 	// method declaration
 	public function areHoursPresent($createdDate) {
 		$returnValue = 0;	
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s' AND `customer_machine_error`.`created_on_date` = '%s'", mysql_real_escape_string($this->customer->id), mysql_real_escape_string($createdDate));
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s' AND `customer_machine_hours`.`created_on_date` = '%s'", mysql_real_escape_string($this->customer->id), mysql_real_escape_string($createdDate));
 		//echo $query . "\n\n";
 		if($result = mysql_query($query)){
 			echo "Result reached". "\n";
