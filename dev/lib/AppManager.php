@@ -3,7 +3,7 @@ class AppManager extends QtmiBaseClass {
     public $location = "";
 
     // declare properties
-    public $admin_group = array("warren", "briant", "cleidecker", "jglarum", "lucassmith");
+    public $admin_group = array("warren", "briant", "cleidecker", "jglarum");
 
    function __construct() {
       // print "In SubClass constructor\n";
