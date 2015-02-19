@@ -48,6 +48,10 @@ foreach($newCustomer->customers as $id){
 		$newCustomerMachine = new CustomerMachine($dbLink, "FUSION");
 		$newCustomerMachine->customer = $newCustomer;
 		$newCustomerMachine->loadErrors();
+		
+		$newCustomerMachineHours = new CustomerMachineHours($dblink, "FUSION");
+		$newCustomerMachineHours->customer = $newCustomer;
+		$newCustomerMachineHours->loadHours();
 //		}
 //	}
 }

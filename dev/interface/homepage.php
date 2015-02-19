@@ -28,7 +28,7 @@ $linkMaker = new linkMaker();
 				<img src='img/shim.gif' width=10 height=1 />
 			</td>
 			<td class='linksBar' >
-			<a href="add_customer.php">Customers</a> | <a href="add_customer_fusion.php">Customer Fusions</a> |  <a href="add_customer_hc.php">Customer Hardcoaters</a>
+			<a href="add_customer.php">Customers</a> | <a href="add_customer_fusion.php">Customer Fusions</a> |  <a href="add_customer_hc.php">Customer Hardcoaters</a> |  <a href="view_customer_fusion_hours.php">Customer Hour Log</a>
 			</td>
 		</tr>			
 		<tr>

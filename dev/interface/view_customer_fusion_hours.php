@@ -4,13 +4,17 @@ include_once 'global_includes.php';
 $_SESSION['machine_type'] = "FUSION";
 $today = date('y-m-j');
 $newCustomer = new Customer($dbLink);
+$newCustomer->getCustomers();
+
+
+
 
 $listFiles = new ListFiles($dbLink);
 $listFiles->machine_type = $_SESSION['machine_type'] ;
 
 $counter =0;
 
-$newCustomerMachineHours = new CustomerMachineHours($dbLink);
+$newCustomerMachineHours = new CustomerMachineHours($dbLink, $_SESSION['machine_type']);
 if(isset($_REQUEST["addCustHoursNow"])){
 	/*foreach($_REQUEST as $value){
 		if(!$counter = 0 || !$counter = 1){
@@ -43,6 +47,21 @@ if(isset($_REQUEST["addCustHoursNow"])){
 	$newCustomerMachineHours->machine_on_time = $_REQUEST["machineRunTime"];
 	
 	$newCustomerMachineHours->addCustomerMachineHours();
+}
+
+if(isset($_REQUEST["getCustomerHours"])){
+	
+		foreach($newCustomer->customers as $id){
+	//	if(!$only_one || $sent_id == $id){
+	//		if($id == 5){
+			$newCustomer->id = $id;
+			$newCustomer->setCustomer_noParams();
+			$newCustomerMachineHours->customer_machine_type = "FUSION";
+			$newCustomerMachineHours->customer = $newCustomer;
+			$newCustomerMachineHours->loadHours();
+	//		}
+	//	}
+	}
 }
 
 
@@ -118,7 +137,10 @@ if(isset($_REQUEST["addCustHoursNow"])){
 		</form> 
 	</div>
 <?php } ?>
-
+<form name="getCustomerHours" action="view_customer_fusion_hours.php" method="POST">
+<input type="hidden" name="getCustomerHours" value="1"/>
+<br><input type="submit" value="Get Customer Hours" /></br>
+</form>
 <?php  echo $newCustomerMachineHours->showMachineHours(); ?>
 
 </body>

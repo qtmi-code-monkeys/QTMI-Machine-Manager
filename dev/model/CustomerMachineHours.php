@@ -22,6 +22,7 @@ class CustomerMachineHours extends QtmiBaseClass {
    	public $lens_count_setpoint = "";   	
    	public $machine_on_time = "";
    	
+   	public $customer = "";
     public $customerMachineContacts;
     public $listFiles;
  	public $code_base = "";
@@ -33,6 +34,16 @@ class CustomerMachineHours extends QtmiBaseClass {
     
     	//Creates a row in the database for this customer hour log
     	//Manual addition (?)
+    	
+    	function __construct($link, $machine_type) {
+       parent::__construct($link);
+      // print "In SubClass constructor\n";
+      $this->customer_machine_type = $machine_type;
+     $this->linkMaker = new LinkMaker($link);
+      $this->util = new Util($link);
+     $this->customerMachineContacts = new CustomerMachineContacts($link);
+     $this->listFiles = new ListFiles($link);
+   }
     	public function addCustomerMachineHours() {
 		$today = date('y-m-j');
 		$this->last_hmi_update = $today;
@@ -226,14 +237,12 @@ class CustomerMachineHours extends QtmiBaseClass {
 		echo "</table>";
 	}
 	
-	
-
-	
 	public function loadHours() {
-		exec('mkdir ../../customers/hours_logs');	
-		exec('mkdir ../../customers/hours_logs/'.$this->customer->code);	
-		exec('mkdir ../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type);	
-		$this->csv_dir = '../../customers/hours_logs/'.$this->customer->code.'/'.$this->machine_type.'/';
+		exec('mkdir ../../customers/data_logs');	
+		exec('mkdir ../../customers/data_logs/'.$this->customer->code);	
+		exec('mkdir ../../customers/data_logs/'.$this->customer->code.'/'.$this->customer_machine_type);	
+		$this->csv_dir = '../../customers/data_logs/'.$this->customer->code.'/'.$this->customer_machine_type.'/';
+		//echo "</br>" . $this->csv_dir . "</br>";
 		$dirList = scandir($this->csv_dir, 1);
 		
 		foreach($dirList as $dir) 
@@ -256,16 +265,15 @@ class CustomerMachineHours extends QtmiBaseClass {
 	public function haveHoursBeenLogged($dirName) {
 		$returnValue = false;
 		
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours_log` WHERE `customer_machine_hours_log`.`dirName` = '%s' AND `customer_machine_hours_log`.`customer_id` = '%s' AND `customer_machine_hours_log`.`machine_type` = '%s' ",  mysql_real_escape_string($dirName), mysql_real_escape_string($this->customer->id), mysql_real_escape_string($this->machine_type));
-		//echo $query;
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours_log` WHERE `customer_machine_hours_log`.`dir_name` = '%s' AND `customer_machine_hours_log`.`customer_id` = '%s' AND `customer_machine_hours_log`.`customer_machine_type` = '%s' ",  mysql_real_escape_string($dirName), mysql_real_escape_string($this->customer->id), mysql_real_escape_string($this->customer_machine_type));
+		echo $query;
 		$result = mysql_query($query);
+		echo $result;
 		while ($row = mysql_fetch_assoc($result)) {
 			$returnValue = true;
 		}
 		return $returnValue;
 	}
-	 
-
 
 	// method declaration
 	public function insertLoggedFile($filename) {
@@ -286,10 +294,6 @@ class CustomerMachineHours extends QtmiBaseClass {
 	
 	}
 	
-
-
-
-
 	// method declaration
 	public function readHours($csvFile) {
 		$csv_array = $this->util->csv_to_array($this->csv_dir . $csvFile);
@@ -335,8 +339,8 @@ class CustomerMachineHours extends QtmiBaseClass {
 				mysql_real_escape_string($this->rotation_motor_o_ring), 
 				mysql_real_escape_string($this->glow_hydro_rp_oil_life_meter), 
 				mysql_real_escape_string($this->dep_rough_pump_oil_life),
-				mysql_real_escape_string($this->lens_count);
-				mysql_real_escape_string($this->lens_count_setpoint);
+				mysql_real_escape_string($this->lens_count),
+				mysql_real_escape_string($this->lens_count_setpoint),
 				mysql_real_escape_string($this->machine_on_time));
 				//echo $query;
 				mysql_query($query);
@@ -362,10 +366,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		return $returnValue;
 		
 	}
-	
-	
 
-		
 	}
 
     ?>
