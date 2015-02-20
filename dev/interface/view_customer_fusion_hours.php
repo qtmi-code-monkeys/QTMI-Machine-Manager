@@ -52,15 +52,26 @@ if(isset($_REQUEST["addCustHoursNow"])){
 if(isset($_REQUEST["getCustomerHours"])){
 	
 		foreach($newCustomer->customers as $id){
-	//	if(!$only_one || $sent_id == $id){
-	//		if($id == 5){
+
 			$newCustomer->id = $id;
 			$newCustomer->setCustomer_noParams();
 			$newCustomerMachineHours->customer_machine_type = "FUSION";
 			$newCustomerMachineHours->customer = $newCustomer;
 			$newCustomerMachineHours->loadHours();
-	//		}
-	//	}
+
+	}
+}
+
+if(isset($_REQUEST["getCustomerHours"])){
+	
+		foreach($newCustomer->customers as $id){
+
+			$newCustomer->id = $id;
+			$newCustomer->setCustomer_noParams();
+			$newCustomerMachineHours->customer_machine_type = "FUSION";
+			$newCustomerMachineHours->customer = $newCustomer;
+			$newCustomerMachineHours->loadHours();
+
 	}
 }
 
