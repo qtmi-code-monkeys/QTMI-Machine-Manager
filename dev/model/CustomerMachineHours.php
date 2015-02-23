@@ -1,6 +1,7 @@
 <?php
 include_once "../lib/LinkMaker.php"; 
 include_once "../lib/Util.php";
+include_once "../emailer/sendMail.php";
  
 class CustomerMachineHours extends QtmiBaseClass {
     // declare properties
@@ -22,6 +23,8 @@ class CustomerMachineHours extends QtmiBaseClass {
    	public $lens_count_setpoint = "";   	
    	public $machine_on_time = "";
    	
+   	
+   	
    	public $customer = "";
     public $customerMachineContacts;
     public $listFiles;
@@ -34,7 +37,7 @@ class CustomerMachineHours extends QtmiBaseClass {
  	private $linkMaker = "";
     private $util = "";
     private $csv_dir = "";
-    
+    private $sendMail = '';
     
     	//Creates a row in the database for this customer hour log
     	//Manual addition (?)
@@ -48,6 +51,7 @@ class CustomerMachineHours extends QtmiBaseClass {
      $this->customerMachineContacts = new CustomerMachineContacts($link);
      $this->listFiles = new ListFiles($link);
      $this->today = date('y-m-j');
+     $this->sendMail = new sendMail();
    }
     	public function addCustomerMachineHours() {
 		
@@ -187,7 +191,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 				*/
 	}
 	
-	public function showMachineHours() {
+	public function showAllCustomersMachineHours($machine_type="FUSION") {	//defaults to showing FUSIONM machine hours	
 		$today = date('y-m-j');
 		//$this->linkMaker->machine_type = $this->customer_machine_type;
 		//$this->linkMaker->code_base = $this->code_base;
@@ -215,7 +219,68 @@ class CustomerMachineHours extends QtmiBaseClass {
 			
 			//print_r($this->customer->customers);
 			//print_r($id);
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_id` = '%s' ORDER BY `created_on` %s limit 1",mysql_real_escape_string($id),mysql_real_escape_string($this->sort));
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s' AND `customer_machine_hours`.`customer_machine_type` = '%s' ORDER BY `created_on` %s limit 1",mysql_real_escape_string($id), mysql_real_escape_string($machine_type), mysql_real_escape_string($this->sort));
+				$result = mysql_query($query);	
+		//echo $query;
+				while ($row = mysql_fetch_assoc($result)) {
+				
+				
+				//$this->listFiles->setFile($row['file_id']);		
+			
+						if($rowCounter % 2 == 0) echo "<tr style='background:#F5E0EB'>";
+						else echo "<tr>";
+							echo "<td valign=top align=left>".$row['customer_name']."</td>";
+							echo "<td valign=top align=left>".$row['customer_machine_type']."</td>";
+							echo "<td valign=top align=left>".$row['created_on']."</td>";
+							echo "<td valign=top align=left>".$row['turbo_on']."</td>";
+							echo "<td valign=top align=left>".$row['water_chiller_run_time']."</td>";
+							echo "<td valign=top align=left>".$row['glow_hydro_rp_on']."</td>";
+							echo "<td valign=top align=left>".$row['dep_rp_on']."</td>";
+							echo "<td valign=top align=left>".$row['dep_motor_run_time']."</td>";
+							echo "<td valign=top align=left>".$row['rotation_motor_o_ring']."</td>";
+							echo "<td valign=top align=left>".$row['glow_hydro_rp_oil_life_meter']."</td>";
+							echo "<td valign=top align=left>".$row['dep_rough_pump_oil_life']."</td>";
+							echo "<td valign=top align=left>".$row['lens_count']."</td>";
+							echo "<td valign=top align=left>".$row['lens_count_setpoint']."</td>";
+							echo "<td valign=top align=left>".$row['machine_on_time']."</td>";
+						echo "</tr>";
+						$rowCounter++;
+						}
+					}	
+		echo "</table>";
+	}
+	
+	/*		Deemed not necessary. Commenting out in case that is reversed in the future.
+	
+	public function showSelectCustomersMachineHours($machineType="FUSION") {	//defaults to showing FUSIONM machine hours	
+		$today = date('y-m-j');
+		//$this->linkMaker->machine_type = $this->customer_machine_type;
+		//$this->linkMaker->code_base = $this->code_base;
+		$logDate = "";
+		$rowCounter = 0;
+		$counter = 0;
+		echo "<table border=1  style='background:#F3F7F7' >";
+				echo "<tr>";
+					echo "<td style='font-size:18'><b>Customer</b></td>";
+					echo "<td style='font-size:18'><b>Machine</b></td>";
+					echo "<td style='font-size:18'><b>Date</b></td>";
+					echo "<td style='font-size:18'><b>Turbo Hours</b></td>";
+					echo "<td style='font-size:18'><b>Chiller Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydro Roughing Pump Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Dep Chamber Roughing Pump Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Dep Motor Run Time</b></td>";
+					echo "<td style='font-size:18'><b>Rotation Motor O-Ring</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydroo Roughing Pump Oil Life</b></td>";
+					echo "<td style='font-size:18'><b>Dep Roughing Pump Oil Life</b></td>";
+					echo "<td style='font-size:18'><b>Lens Count</b></td>";
+					echo "<td style='font-size:18'><b>Lens Count Setpoint</b></td>";
+					echo "<td style='font-size:18'><b>Machine Run Time</b></td>";					
+				echo "</tr>";
+		foreach($this->customer->customers as $id){
+			
+			//print_r($this->customer->customers);
+			//print_r($id);
+		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer_machine_hours` WHERE `customer_machine_hours`.`customer_id` = '%s', AND `customer_machine_hours`.`customer_machine_type` = '%s' ORDER BY `created_on` %s limit 1",mysql_real_escape_string($id), mysql_real_escape_string($machineType), mysql_real_escape_string($this->sort));
 				$result = mysql_query($query);	
 		//echo $query;
 				while ($row = mysql_fetch_assoc($result)) {
@@ -246,7 +311,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 		echo "</table>";
 	}
 
-	
+	*/
 
 	public function loadHours() {
 		exec('mkdir ../../customers/data_logs');	
@@ -254,7 +319,12 @@ class CustomerMachineHours extends QtmiBaseClass {
 		exec('mkdir ../../customers/data_logs/'.$this->customer->code.'/'.$this->customer_machine_type);	
 		$this->csv_dir = '../../customers/data_logs/'.$this->customer->code.'/'.$this->customer_machine_type.'/';
 		//echo "</br>" . $this->csv_dir . "</br>";
-		$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer` WHERE `customer`.`has_fusion` = '1' AND `customer`.`id` ='%s'", mysql_real_escape_string($this->customer->id));
+		if(!strcmp($this->customer_machine_type, "FUSION")){
+			$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer` WHERE `customer`.`has_fusion` = '1' AND `customer`.`id` ='%s'", mysql_real_escape_string($this->customer->id));
+		}
+		else if (!strcmp($this->customer_machine_type, "HC")){
+			$query = sprintf("SELECT * FROM `hmi_plc_mgr`.`customer` WHERE `customer`.`has_hc` = '1' AND `customer`.`id` ='%s'", mysql_real_escape_string($this->customer->id));
+		}
 		$result = mysql_query($query);
 		if (!$result) {
    			 $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -405,6 +475,7 @@ class CustomerMachineHours extends QtmiBaseClass {
 					//if(mysql_query($query)) echo "inserted!";
 			}
 			
+		
 						
 	}	
     ?>

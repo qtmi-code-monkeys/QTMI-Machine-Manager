@@ -16,6 +16,7 @@ include_once "../lib/LinkMaker.php";
 include_once "../lib/SearchManager.php"; 
 include_once "../lib/Util.php"; 
 include_once "../lib/JsWidgets.php"; 
+include_once "../emailer/sendMail.php";
 
 /**
 initilaze general DB connection

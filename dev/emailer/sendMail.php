@@ -33,4 +33,28 @@ if (PEAR::isError($mail)) {
   echo("<p>Message successfully sent!</p>");
  }
 
+public function sendUsageEmail($usage_level, $part){
+	
+	
+	
+} 
+ 
+public function threeQuarterUsageEmail($part){
+	//create email from machine manager 
+	//send email to Freshdesk/TST
+	//message should be that the passed part is at 75% of its prescribed life
+}
+
+public function ninteyPercentUsageEmail($part){
+	//create email from machine manager 
+	//send email to Freshdesk/TST
+	//message should be that the passed part is at 90% of its prescribed life
+}
+
+public function ninteyFivePercentPlusEmail($part){
+	//create email from machine manager 
+	//send email to Freshdesk/TST
+	//message should be that the passed part is at 95+% of its prescribed life
+}
+ 
 ?>
