@@ -1,7 +1,7 @@
 <?php
 include_once "../lib/LinkMaker.php"; 
 include_once "../lib/Util.php";
-include_once "../emailer/sendMail.php";
+//include_once "../emailer/sendMail.php";		missing required file Mail.php
  
 class CustomerMachineHours extends QtmiBaseClass {
     // declare properties
@@ -25,7 +25,7 @@ class CustomerMachineHours extends QtmiBaseClass {
    	
    	
    	
-   	public $customer = "";
+   	
     public $customerMachineContacts;
     public $listFiles;
  	public $code_base = "";
@@ -33,11 +33,14 @@ class CustomerMachineHours extends QtmiBaseClass {
  	public $today;
  	public $creation_date = ""; 
  	public $latestDate = "";
+ 	
+ 	public $customer = "";
     
  	private $linkMaker = "";
     private $util = "";
     private $csv_dir = "";
-    private $sendMail = '';
+    
+    //private $sendMail = '';
     
     	//Creates a row in the database for this customer hour log
     	//Manual addition (?)
@@ -51,7 +54,7 @@ class CustomerMachineHours extends QtmiBaseClass {
      $this->customerMachineContacts = new CustomerMachineContacts($link);
      $this->listFiles = new ListFiles($link);
      $this->today = date('y-m-j');
-     $this->sendMail = new sendMail();
+     //$this->sendMail = new sendMail();
    }
     	public function addCustomerMachineHours() {
 		
@@ -200,6 +203,39 @@ class CustomerMachineHours extends QtmiBaseClass {
 		$counter = 0;
 		echo "<table border=1  style='background:#F3F7F7' >";
 				echo "<tr>";
+					echo "<td/><td/><td/><td/><td/><td/><td style='font-size:18'><b>Key</b></td><td/><td/><td/><td/><td/>";
+				echo "</tr>";	
+				echo "<tr>";
+					echo "<td style='font-size:18'><b>Less than 75% part life exhausted</b></td>";	
+					echo "<td style='font-size:18'><b>75% - 89% part life exhausted</b></td>";
+					echo "<td style='font-size:18'><b>90% - 94% part life exhausted</b></td>";
+					echo "<td style='font-size:18'><b>95+% part life exhausted Hours</b></td>";
+					echo "<td style='font-size:18'><b>Turbo Hours Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Chiller Run Time Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydro Roughing Pump Run Time Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Dep Chamber Roughing Pump Run Time Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Dep Motor Run Time Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Rotation Motor O-Ring Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Glow & Hydroo Roughing Pump Oil Life Set Point</b></td>";
+					echo "<td style='font-size:18'><b>Dep Roughing Pump Oil Life Set Point</b></td>";
+				echo "</tr>";	
+				echo "<tr>";	
+					echo "<td style='font-size:18; background-color:green'></td>";
+					echo "<td style='font-size:18; background-color:yellow'></td>";
+					echo "<td style='font-size:18; background-color:orange'></td>";
+					echo "<td style='font-size:18; background-color:red'></td>";
+					echo "<td style='font-size:18'><b>20,000 Hours</b></td>";
+					echo "<td style='font-size:18'><b>720 Hours</b></td>";
+					echo "<td style='font-size:18'><b>17,500 Hours</b></td>";
+					echo "<td style='font-size:18'><b>17,500 Hours</b></td>";
+					echo "<td style='font-size:18'><b>17,500 Hours</b></td>";
+					echo "<td style='font-size:18'><b>2,160 Hours</b></td>";
+					echo "<td style='font-size:18'><b>720 Hours</b></td>";
+					echo "<td style='font-size:18'><b>720 Hours</b></td>";							
+				echo "</tr></br></br>";
+		
+		echo "<table border=1  style='background:#F3F7F7' >";
+				echo "<tr>";
 					echo "<td style='font-size:18'><b>Customer</b></td>";
 					echo "<td style='font-size:18'><b>Machine</b></td>";
 					echo "<td style='font-size:18'><b>Date</b></td>";
@@ -232,14 +268,14 @@ class CustomerMachineHours extends QtmiBaseClass {
 							echo "<td valign=top align=left>".$row['customer_name']."</td>";
 							echo "<td valign=top align=left>".$row['customer_machine_type']."</td>";
 							echo "<td valign=top align=left>".$row['created_on']."</td>";
-							echo "<td valign=top align=left>".$row['turbo_on']."</td>";
-							echo "<td valign=top align=left>".$row['water_chiller_run_time']."</td>";
-							echo "<td valign=top align=left>".$row['glow_hydro_rp_on']."</td>";
-							echo "<td valign=top align=left>".$row['dep_rp_on']."</td>";
-							echo "<td valign=top align=left>".$row['dep_motor_run_time']."</td>";
-							echo "<td valign=top align=left>".$row['rotation_motor_o_ring']."</td>";
-							echo "<td valign=top align=left>".$row['glow_hydro_rp_oil_life_meter']."</td>";
-							echo "<td valign=top align=left>".$row['dep_rough_pump_oil_life']."</td>";
+							echo $this->checkHours(0,$row['turbo_on']).$row['turbo_on']."</td>";
+							echo $this->checkHours(3,$row['water_chiller_run_time']).$row['water_chiller_run_time']."</td>";
+							echo $this->checkHours(1,$row['glow_hydro_rp_on']).$row['glow_hydro_rp_on']."</td>";
+							echo $this->checkHours(1,$row['dep_rp_on']).$row['dep_rp_on']."</td>";
+							echo $this->checkHours(1,$row['dep_motor_run_time']).$row['dep_motor_run_time']."</td>";
+							echo $this->checkHours(2,$row['rotation_motor_o_ring']).$row['rotation_motor_o_ring']."</td>";
+							echo $this->checkHours(3,$row['glow_hydro_rp_oil_life_meter']).$row['glow_hydro_rp_oil_life_meter']."</td>";
+							echo $this->checkHours(3,$row['dep_rough_pump_oil_life']).$row['dep_rough_pump_oil_life']."</td>";
 							echo "<td valign=top align=left>".$row['lens_count']."</td>";
 							echo "<td valign=top align=left>".$row['lens_count_setpoint']."</td>";
 							echo "<td valign=top align=left>".$row['machine_on_time']."</td>";
@@ -249,6 +285,30 @@ class CustomerMachineHours extends QtmiBaseClass {
 					}	
 		echo "</table>";
 	}
+	
+		public function checkHours($cycle,$hours){
+	
+		$max_hours = array(20000,17500,2160,720);
+		
+		//foreach($max_hours as $max_hour){		//was going to loop through the array. dont need to as it can be handle linearly for each hour log
+		
+			$usage = $hours/$max_hours[$cycle];
+			//echo $usage."</br>";
+			if($usage >= .75 && $usage < .9){
+				return "<td valign=top align=left style='background-color:yellow'>";	
+			}
+			else if($usage >=.9 && $usage < .95){
+				return "<td valign=top align=left style='background-color:orange'>";	
+			}
+			else if($usage >=.95){
+				return "<td valign=top align=left style='background-color:red'>";	
+			}
+			else{
+				return "<td valign=top align=left style='background-color:green'>";	
+			}
+		//}
+			
+	}	
 	
 	/*		Deemed not necessary. Commenting out in case that is reversed in the future.
 	
@@ -474,6 +534,8 @@ class CustomerMachineHours extends QtmiBaseClass {
 					
 					//if(mysql_query($query)) echo "inserted!";
 			}
+			
+	
 			
 		
 						

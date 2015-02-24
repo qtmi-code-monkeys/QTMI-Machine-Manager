@@ -32,7 +32,7 @@ if (PEAR::isError($mail)) {
  } else {
   echo("<p>Message successfully sent!</p>");
  }
-
+/*
 public function sendUsageEmail($usage_level, $part){
 	
 	
@@ -56,5 +56,5 @@ public function ninteyFivePercentPlusEmail($part){
 	//send email to Freshdesk/TST
 	//message should be that the passed part is at 95+% of its prescribed life
 }
- 
+ */
 ?>

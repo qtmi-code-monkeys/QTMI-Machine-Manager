@@ -6,9 +6,7 @@ $today = date('y-m-j');
 $newCustomer = new Customer($dbLink);
 $newCustomer->getCustomers();
 
-function __construct(){
-		
-}
+
 
 $listFiles = new ListFiles($dbLink);
 $listFiles->machine_type = $_SESSION['machine_type'] ;
@@ -16,6 +14,7 @@ $listFiles->machine_type = $_SESSION['machine_type'] ;
 $counter =0;
 
 $newCustomerMachineHours = new CustomerMachineHours($dbLink, $_SESSION['machine_type']);
+$newCustomerMachineHours->customer = $newCustomer;
 if(isset($_REQUEST["addCustHoursNow"])){
 	/*foreach($_REQUEST as $value){
 		if(!$counter = 0 || !$counter = 1){
