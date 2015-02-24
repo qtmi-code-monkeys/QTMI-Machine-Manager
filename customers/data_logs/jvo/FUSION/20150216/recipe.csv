@@ -1,0 +1,101 @@
+Name, Invalid, Acoat, Glow Time, Glow Pressure, Hydro Front Time, Hydro Back Time, Overcoat Time, Total Steps, Is Red
+RETINAL BLISS HEV 70mm, OFF, 70m, 0, 50, 1, 1, 0, 5, OFF
+RETINAL BLISS HEV 50mm, OFF, 50m, 0, 50, 1, 1, 0, 5, OFF
+RETINAL BLISS HEV 1.7, OFF, Hi, 0, 50, 1, 1, 0, 5, OFF
+RETINAL BLISS 6 LAYER, OFF, 70m, 0, 50, 1, 1, 0, 7, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 7, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+SENT GREEN 75 SPIN 4L, OFF, 75S, 0, 50, 1, 1, 0, 5, OFF
+SENT GREEN 70 SPIN 4L, OFF, 70S, 0, 50, 1, 1, 0, 5, OFF
+SENT GREEN 65 SPIN 4L, OFF, 65S, 0, 50, 1, 1, 0, 5, OFF
+SENT GREEN 60 SPIN 4L, OFF, 60S, 0, 50, 1, 1, 0, 5, OFF
+SENT GREEN 55 SPIN 4L, OFF, 55S, 0, 50, 1, 1, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+SENT GREEN 6L 75, OFF, 75S, 0, 50, 1, 1, 0, 7, OFF
+SENT GREEN 6L 70, OFF, 70S, 0, 50, 1, 1, 0, 7, OFF
+SENT GREEN 6L 65, OFF, 65S, 0, 50, 1, 1, 0, 7, OFF
+SENT GREEN 6L 60, OFF, 60S, 0, 50, 1, 1, 0, 7, OFF
+SENT GREEN 6L 55, OFF, 55S, 0, 50, 1, 1, 0, 7, OFF
+FLASH BLACK-RB AR, OFF, , 0, 50, 0, 0, 0, 7, OFF
+FLASH BLUE-RB AR, OFF, , 0, 50, 0, 0, 0, 7, OFF
+FLASH GOLD-RB AR, OFF, , 0, 0, 0, 0, 0, 7, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+SILVER FLASH RB TECH, OFF, , 0, 0, 1, 1, 0, 7, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+COBALT UV BLUE, OFF, OK, 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 50, 0, 0, 0, 11, OFF
+RED MIRROR, OFF, , 0, 3, 0, 0, 0, 7, OFF
+ORANGE, OFF, , 0, 3, 0, 0, 0, 7, OFF
+BLUE, OFF, , 0, 3, 0, 0, 0, 6, OFF
+GREEN, OFF, , 0, 3, 0, 0, 0, 5, OFF
+YELLOW, OFF, , 0, 3, 0, 0, 0, 6, OFF
+SILVER, OFF, , 0, 0, 1, 0, 0, 3, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 3, OFF
+, ON, , 0, 0, 0, 0, 0, 3, OFF
+, ON, , 0, 3, 0, 0, 0, 9, OFF
+RETINAL BLISS DES, OFF, OK, 0, 50, 0, 0, 0, 7, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+COBALT UV BLUE TEST, OFF, OK, 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV BLUE, OFF, OK, 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV BLUE 50mm, OFF, OK, 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV BLUE Hi 50mm, OFF, OK, 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 8, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 9, OFF
+LO MONO F  B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO  F  B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+LO MONO F, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO F, OFF, , 0, 0, 0, 0, 0, 1, OFF
+LO MONO B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+COND ALL NEW, OFF, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 1, 1, 0, 0, OFF
+CAL GRN AR, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR 50mm, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR 60mm, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR 1.70 50mm, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR 1.70, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR FRONT, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR BACK, OFF, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 2, OFF
+, ON, , 0, 0, 0, 0, 0, 2, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 7, OFF
+CAL GRN AR W HYDRO, OFF, , 0, 0, 1, 1, 0, 5, OFF

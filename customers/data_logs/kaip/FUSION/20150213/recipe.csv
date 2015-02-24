@@ -1,0 +1,101 @@
+Name, Invalid, Acoat, Glow Time, Glow Pressure, Hydro Front Time, Hydro Back Time, Overcoat Time, Total Steps, Is Red
+SENTINEL UV GREEN, OFF, , 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV GRN BAK, OFF, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV GREEN SAMPLE, OFF, , 0, 50, 7, 5, 0, 5, OFF
+SENTINEL UV GRN1, OFF, , 0, 50, 0, 0, 0, 5, OFF
+FLASH GOLD-RB AR, OFF, , 0, 0, 10, 10, 0, 7, OFF
+FLASH BLACK-RB AR, OFF, , 0, 50, 10, 10, 0, 7, OFF
+FLASH BLUE-RB AR, OFF, , 0, 50, 10, 10, 0, 7, OFF
+GREEN MIRROR-RB AR, OFF, , 0, 50, 10, 10, 0, 10, OFF
+GOLD MIRROR-RB AR, OFF, , 0, 3, 10, 10, 0, 8, OFF
+STD SILVER MIRROR, OFF, , 0, 0, 0, 0, 0, 3, OFF
+STD BLUE MIRROR, OFF, , 0, 0, 10, 0, 0, 5, OFF
+GREEN MIRROR, OFF, , 0, 50, 0, 0, 0, 7, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 7, OFF
+SENT F VE TINT, OFF, , 0, 50, 10, 10, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 8, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 7, OFF
+TDN, OFF, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+SENTINEL UV GREEN SPIN, OFF, , 0, 50, 7, 5, 0, 5, OFF
+PASS THROUGH HDRO, OFF, , 0, 3, 7, 5, 0, 0, OFF
+PASS THROUGH, OFF, , 0, 3, 0, 0, 0, 0, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 0, 0, 0, 0, 7, OFF
+, ON, , 0, 0, 0, 0, 0, 8, OFF
+, ON, , 0, 0, 0, 0, 0, 8, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 8, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+, ON, , 0, 0, 0, 0, 0, 7, OFF
+, ON, , 0, 25, 0, 0, 0, 2, OFF
+, ON, , 0, 0, 0, 0, 0, 0, OFF
+, ON, , 0, 0, 0, 0, 0, 2, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 50, 0, 0, 0, 10, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+, ON, , 0, 0, 0, 0, 0, 8, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 11, OFF
+, ON, , 0, 50, 0, 0, 0, 11, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 3, OFF
+, ON, , 0, 3, 0, 0, 0, 4, OFF
+, ON, , 0, 3, 0, 0, 0, 3, OFF
+, ON, , 0, 0, 0, 0, 0, 3, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 3, OFF
+, ON, , 0, 0, 0, 0, 0, 3, OFF
+, ON, , 0, 3, 0, 0, 0, 9, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 13, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 7, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 6, OFF
+, ON, , 0, 3, 0, 0, 0, 5, OFF
+, ON, , 0, 3, 0, 0, 0, 9, OFF
+LO MONO F, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO F, OFF, , 0, 0, 0, 0, 0, 1, OFF
+LO MONO B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+LO MONO F  B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+HI MONO  F  B, OFF, , 0, 0, 0, 0, 0, 1, OFF
+SENTINEL UV G 92714, OFF, , 0, 50, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 50, 0, 0, 0, 7, OFF
+LO MONO F  B SPIN, OFF, , 0, 0, 0, 0, 0, 1, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 5, OFF
+70 NM LO AND HYDRO, OFF, , 0, 0, 10, 10, 0, 1, OFF
+HYDRO ONLY, OFF, , 0, 0, 10, 10, 0, 0, OFF
+COND ALL, OFF, , 0, 0, 0, 0, 0, 7, OFF
+CAL GRN AR, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR FRONT, OFF, , 0, 0, 0, 0, 0, 5, OFF
+CAL GRN AR BACK, OFF, , 0, 0, 0, 0, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 2, OFF
+CAL GRN AR W HYDRO, OFF, , 0, 0, 8, 12, 0, 5, OFF
+, ON, , 0, 0, 0, 0, 0, 4, OFF
+, ON, , 0, 0, 0, 0, 0, 1, OFF
+CAL BLUE  14@450nm, OFF, , 0, 0, 0, 0, 0, 2, OFF
+, ON, , 0, 0, 0, 0, 0, 2, OFF
+RED MIRROR-RB AR, OFF, , 0, 3, 10, 10, 0, 11, OFF
+DES RB  F B, OFF, , 0, 50, 10, 10, 0, 7, OFF
+RETINAL BLISS F B, OFF, , 0, 50, 9, 9, 0, 5, OFF
+COBALT UV BLUE  F B, OFF, , 0, 50, 9, 9, 0, 5, OFF

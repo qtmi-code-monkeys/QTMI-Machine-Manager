@@ -6,6 +6,7 @@ include_once "../model/MachineNote.php";
 include_once "../model/UploadController.php"; 
 include_once "../model/Customer.php"; 
 include_once "../model/CustomerMachine.php"; 
+include_once "../model/CustomerMachineHours.php"; 
 include_once "../model/CustomerMachineNote.php"; 
 include_once "../model/CustomerMachineUpgrade.php"; 
 include_once "../model/CustomerMachineContacts.php"; 
@@ -15,6 +16,7 @@ include_once "../lib/LinkMaker.php";
 include_once "../lib/SearchManager.php"; 
 include_once "../lib/Util.php"; 
 include_once "../lib/JsWidgets.php"; 
+//include_once "../emailer/sendMail.php";		missing required file Mail.php
 
 /**
 initilaze general DB connection
